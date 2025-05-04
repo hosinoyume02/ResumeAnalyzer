@@ -1,15 +1,14 @@
 #ifndef RESUME_REPOSITORY_H
 #define RESUME_REPOSITORY_H
 
+#include "Resume.h"
 #include <QList>
-#include "resume.h"
+#include <QString>
 
 class ResumeRepository {
 public:
     static QList<Resume> fetchAllResumes();
-
-    // 新增：按字段筛选（fieldName: education/experience/skills/languages）
-    static QList<Resume> filterResumesByField(const QString& fieldName, const QString& value);
+    static QList<Resume> fetchResumesByKeyword(const QString& keyword);
 };
 
 #endif // RESUME_REPOSITORY_H

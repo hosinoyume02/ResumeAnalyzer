@@ -25,11 +25,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 }
 
 void MainWindow::onFilterClicked() {
-    QString keyword = keywordInput->text();
-    QList<Resume> list = ResumeRepository::fetchResumesByKeyword(keyword);
-    std::vector<Resume> results(list.begin(), list.end());
-    displayResumes(results);
+    QString keyword = ui->keywordInput->text();  // 获取输入框内容
+    std::vector<Resume> results = repository.filterResumes(keyword);  // 数据库查询
+    showResumes(results);  // 显示
 }
+
 
 
 // MainWindow.cpp
@@ -43,5 +43,23 @@ void MainWindow::displayResumes(const std::vector<Resume>& resumes) {
         resultTable->setItem(i, 3, new QTableWidgetItem(r.skills));
         resultTable->setItem(i, 4, new QTableWidgetItem(r.languages));
     }
+}
+
+void MainWindow::showResumes(const std::vector<Resume>& resumes) {
+    ui->resumeTable->clear();
+    ui->resumeTable->setRowCount(static_cast<int>(resumes.size()));
+    ui->resumeTable->setColumnCount(4);  // 你有几个字段就写几个
+    QStringList headers = {"Education", "Experience", "Skills", "Languages"};
+    ui->resumeTable->setHorizontalHeaderLabels(headers);
+
+    for (int row = 0; row < resumes.size(); ++row) {
+        const Resume& r = resumes[row];
+        ui->resumeTable->setItem(row, 0, new QTableWidgetItem(r.education));
+        ui->resumeTable->setItem(row, 1, new QTableWidgetItem(r.experience));
+        ui->resumeTable->setItem(row, 2, new QTableWidgetItem(r.skills));
+        ui->resumeTable->setItem(row, 3, new QTableWidgetItem(r.languages));
+    }
+
+    ui->resumeTable->resizeColumnsToContents();  // 自动调整列宽
 }
 

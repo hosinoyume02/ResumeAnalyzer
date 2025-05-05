@@ -22,7 +22,11 @@ private slots:
     void onFilterClicked();  // 这个槽函数我们已经绑定过了
 
 private:
-    Ui::MainWindow *ui;
     ResumeRepository repository;
-    void showResumes(const std::vector<Resume>& resumes);  // 用于显示
+    QLineEdit *keywordInput;
+    QPushButton *filterButton;
+    QTableWidget *resultTable;
+
+    void showResumes(const std::vector<Resume>& resumes);
+
 };

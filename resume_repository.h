@@ -1,14 +1,16 @@
 #ifndef RESUME_REPOSITORY_H
 #define RESUME_REPOSITORY_H
 
-#include "Resume.h"
-#include <QList>
+#include <vector>
 #include <QString>
+#include "Resume.h"
 
 class ResumeRepository {
 public:
-    static QList<Resume> fetchAllResumes();
-    static QList<Resume> fetchResumesByKeyword(const QString& keyword);
+    ResumeRepository();
+    std::vector<Resume> filterResumes(const QString& keyword);
+private:
+    std::vector<Resume> resumes;
 };
 
 #endif // RESUME_REPOSITORY_H

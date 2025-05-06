@@ -24,6 +24,13 @@ set(SOURCES
         ResumeFilterWidget.cpp
         MainWindow.cpp
         main.cpp
+        Job.cpp
+        JobWidget.cpp
+        ResumeWidget.cpp
+        RecommendationWidget.cpp
+        AdminWidget.cpp
+        User.cpp
+        LoginWindow.cpp
 )
 
 # 添加头文件（仅 .h/.hpp）
@@ -32,6 +39,13 @@ set(HEADERS
         ResumeManager.h
         ResumeFilterWidget.h
         MainWindow.h
+        Job.h
+        JobWidget.h
+        ResumeWidget.h
+        RecommendationWidget.h
+        AdminWidget.h
+        User.h
+        LoginWindow.h
 )
 
 # 创建可执行文件

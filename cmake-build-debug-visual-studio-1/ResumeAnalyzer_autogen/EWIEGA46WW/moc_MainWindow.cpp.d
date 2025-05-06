@@ -1,7 +1,13 @@
 E:/CLion_Object/ResumeAnalyzer/cmake-build-debug-visual-studio-1/ResumeAnalyzer_autogen/EWIEGA46WW/moc_MainWindow.cpp: E:/CLion_Object/ResumeAnalyzer/MainWindow.h \
+  E:/CLion_Object/ResumeAnalyzer/AdminWidget.h \
+  E:/CLion_Object/ResumeAnalyzer/Job.h \
+  E:/CLion_Object/ResumeAnalyzer/JobWidget.h \
+  E:/CLion_Object/ResumeAnalyzer/RecommendationWidget.h \
   E:/CLion_Object/ResumeAnalyzer/Resume.h \
   E:/CLion_Object/ResumeAnalyzer/ResumeFilterWidget.h \
   E:/CLion_Object/ResumeAnalyzer/ResumeManager.h \
+  E:/CLion_Object/ResumeAnalyzer/ResumeWidget.h \
+  E:/CLion_Object/ResumeAnalyzer/User.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/QDateTime \
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/QList \
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/QString \
@@ -70,6 +76,7 @@ E:/CLion_Object/ResumeAnalyzer/cmake-build-debug-visual-studio-1/ResumeAnalyzer_
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/qmargins.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/qmath.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/qmetacontainer.h \
+  E:/Qt/6.9.0/msvc2022_64/include/QtCore/qmetaobject.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/qmetatype.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/qminmax.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtCore/qnamespace.h \
@@ -170,9 +177,15 @@ E:/CLion_Object/ResumeAnalyzer/cmake-build-debug-visual-studio-1/ResumeAnalyzer_
   E:/Qt/6.9.0/msvc2022_64/include/QtGui/qvalidator.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtGui/qwindowdefs.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtGui/qwindowdefs_win.h \
+  E:/Qt/6.9.0/msvc2022_64/include/QtSql/QSqlDatabase \
+  E:/Qt/6.9.0/msvc2022_64/include/QtSql/qsqldatabase.h \
+  E:/Qt/6.9.0/msvc2022_64/include/QtSql/qtsql-config.h \
+  E:/Qt/6.9.0/msvc2022_64/include/QtSql/qtsqlexports.h \
+  E:/Qt/6.9.0/msvc2022_64/include/QtSql/qtsqlglobal.h \
   E:/Qt/6.9.0/msvc2022_64/include/QtWidgets/QLineEdit \
   E:/Qt/6.9.0/msvc2022_64/include/QtWidgets/QMainWindow \
   E:/Qt/6.9.0/msvc2022_64/include/QtWidgets/QPushButton \
+  E:/Qt/6.9.0/msvc2022_64/include/QtWidgets/QTabWidget \
   E:/Qt/6.9.0/msvc2022_64/include/QtWidgets/QTableWidget \
   E:/Qt/6.9.0/msvc2022_64/include/QtWidgets/QWidget \
   E:/Qt/6.9.0/msvc2022_64/include/QtWidgets/qabstractbutton.h \

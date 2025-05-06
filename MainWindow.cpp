@@ -1,34 +1,35 @@
 #include "MainWindow.h"
-#include <QtSql/QSqlDatabase>
+#include <QMessageBox>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlError>
-#include <QMessageBox>
-#include <QDebug>
 
-MainWindow::MainWindow(QWidget *parent)
-        : QMainWindow(parent), filterWidget(new ResumeFilterWidget(this)) {
-
+MainWindow::MainWindow(const User &user, QWidget *parent)
+        : QMainWindow(parent), currentUser(user), filterWidget(new ResumeFilterWidget(this)) {
+    setupDatabase();
     loadDataFromDatabase();
     filterWidget->setResumeManager(&manager);
-    setCentralWidget(filterWidget);
+    setupUI();
     resize(1000, 600);
-    setWindowTitle("简历数据分析系统");
+    setWindowTitle("大学生就业推荐系统 - " + currentUser.username);
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() {
+    db.close();
+}
 
-void MainWindow::loadDataFromDatabase() {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-    db.setDatabaseName("MySQL"); // DSN 名称
+void MainWindow::setupDatabase() {
+    db = QSqlDatabase::addDatabase("QODBC", "mainConnection");
+    db.setDatabaseName("MySQL");
     db.setUserName("root");
     db.setPassword("20020904");
-
     if (!db.open()) {
-        QMessageBox::critical(this, "数据库错误", "无法连接数据库: " + db.lastError().text());
-        return;
+        QMessageBox::critical(this, "错误", "数据库连接失败: " + db.lastError().text());
     }
+}
 
-    QSqlQuery query("SELECT resume_id, user_id, education, experience, skills, languages, created_at FROM resumes");
+void MainWindow::loadDataFromDatabase() {
+    QSqlQuery query(db);
+    query.exec("SELECT resume_id, user_id, education, experience, skills, languages, created_at FROM resumes");
     while (query.next()) {
         Resume res(
                 query.value(0).toInt(),
@@ -40,5 +41,27 @@ void MainWindow::loadDataFromDatabase() {
                 query.value(6).toDateTime()
         );
         manager.addResume(res);
+    }
+}
+
+void MainWindow::setupUI() {
+    tabWidget = new QTabWidget(this);
+    setCentralWidget(tabWidget);
+
+    // 公共选项卡：简历筛选（所有角色可见）
+    tabWidget->addTab(filterWidget, "简历筛选");
+
+    // 根据角色显示不同选项卡
+    if (currentUser.role == "student") {
+        resumeWidget = new ResumeWidget(currentUser.userId, db, this);
+        recommendationWidget = new RecommendationWidget(currentUser.userId, db, this);
+        tabWidget->addTab(resumeWidget, "我的简历");
+        tabWidget->addTab(recommendationWidget, "职位推荐");
+    } else if (currentUser.role == "employer") {
+        jobWidget = new JobWidget(currentUser.userId, db, this);
+        tabWidget->addTab(jobWidget, "职位管理");
+    } else if (currentUser.role == "admin") {
+        adminWidget = new AdminWidget(db, this);
+        tabWidget->addTab(adminWidget, "系统管理");
     }
 }

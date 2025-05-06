@@ -1,0 +1,18 @@
+# ninja log v6
+28	784	7682296281515603	ResumeAnalyzer_autogen/timestamp	c6ce19d986d6295f
+28	784	7682296281515603	ResumeAnalyzer_autogen/mocs_compilation.cpp	c6ce19d986d6295f
+28	784	7682296281515603	E:/CLion_Object/ResumeAnalyzer/cmake-build-debug-visual-studio-1/ResumeAnalyzer_autogen/timestamp	c6ce19d986d6295f
+28	784	7682296281515603	E:/CLion_Object/ResumeAnalyzer/cmake-build-debug-visual-studio-1/ResumeAnalyzer_autogen/mocs_compilation.cpp	c6ce19d986d6295f
+796	2409	7682296282884185	CMakeFiles/ResumeAnalyzer.dir/Resume.cpp.obj	c4815bcb946aba0
+806	2453	7682296282989288	CMakeFiles/ResumeAnalyzer.dir/ResumeManager.cpp.obj	fa9d07002ce03d0c
+784	3039	7682296282768910	CMakeFiles/ResumeAnalyzer.dir/ResumeAnalyzer_autogen/mocs_compilation.cpp.obj	2862e028c0f2efd6
+816	3071	7682296283084394	CMakeFiles/ResumeAnalyzer.dir/ResumeFilterWidget.cpp.obj	3501582bf3ce637c
+839	3092	7682296283319831	CMakeFiles/ResumeAnalyzer.dir/main.cpp.obj	4885b7c47f6c2cde
+827	3095	7682296283199678	CMakeFiles/ResumeAnalyzer.dir/MainWindow.cpp.obj	e84f6f72f347fc64
+3096	3699	7682296305884029	ResumeAnalyzer.exe	976830ec0491a159
+32	358	7682298747536143	ResumeAnalyzer_autogen/timestamp	c6ce19d986d6295f
+32	358	7682298747536143	ResumeAnalyzer_autogen/mocs_compilation.cpp	c6ce19d986d6295f
+32	358	7682298747536143	E:/CLion_Object/ResumeAnalyzer/cmake-build-debug-visual-studio-1/ResumeAnalyzer_autogen/timestamp	c6ce19d986d6295f
+32	358	7682298747536143	E:/CLion_Object/ResumeAnalyzer/cmake-build-debug-visual-studio-1/ResumeAnalyzer_autogen/mocs_compilation.cpp	c6ce19d986d6295f
+359	2208	7682298750795056	CMakeFiles/ResumeAnalyzer.dir/MainWindow.cpp.obj	e84f6f72f347fc64
+2209	2538	7682298769289051	ResumeAnalyzer.exe	976830ec0491a159

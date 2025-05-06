@@ -3,48 +3,53 @@ project(ResumeAnalyzer)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# 设置 Qt 安装路径（你要根据自己的 Qt 安装路径修改）
-set(CMAKE_PREFIX_PATH "E:/Qt/6.8.0/msvc2019_64/lib/cmake")
+# 设置 Qt 安装路径
+set(CMAKE_PREFIX_PATH "E:/Qt/6.9.0/msvc2022_64/lib/cmake")
 
-# 找 Qt 库
-find_package(Qt6 REQUIRED COMPONENTS Core Sql Widgets)
+# 启用 Qt 自动功能
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
+
+# 查找 Qt 库组件
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Sql Charts)
+
+# 添加 include 目录（如果你用了 include 文件夹）
+include_directories(${CMAKE_SOURCE_DIR})
+
 # 添加源文件
 set(SOURCES
         main.cpp
         Resume.cpp
         resume_repository.cpp
         MainWindow.cpp
+        user_manager.cpp
+        resume_parser.cpp
+        test_data_generator.cpp
+        analyzer.cpp
+        charts_widget.cpp
 )
 
+# 添加头文件（仅 .h/.hpp）
 set(HEADERS
         Resume.h
         resume_repository.h
         MainWindow.h
-        MainWindow.h
-        MainWindow.cpp
-        user_manager.cpp
         user_manager.h
         resume_parser.h
-        resume_parser.cpp
         test_data_generator.h
-        test_data_generator.cpp
         analyzer.h
-        analyzer.cpp
         charts_widget.h
-        charts_widget.cpp
 )
-target_link_libraries(ResumeAnalyzer PRIVATE
+
+# 创建可执行文件
+add_executable(ResumeAnalyzer ${SOURCES} ${HEADERS})
+
+# 链接 Qt 库
+target_link_libraries(ResumeAnalyzer
         Qt6::Core
         Qt6::Gui
         Qt6::Widgets
         Qt6::Sql
         Qt6::Charts
 )
-# Qt UI（暂时我们不使用 .ui 文件，可以忽略）
-add_executable(ResumeAnalyzer ${SOURCES} ${HEADERS})
-
-# 链接 Qt 库
-target_link_libraries(ResumeAnalyzer Qt6::Core Qt6::Sql Qt6::Widgets)

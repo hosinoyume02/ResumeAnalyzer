@@ -1,46 +1,44 @@
 #include "MainWindow.h"
-#include <QVBoxLayout>
-#include <QLabel>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
+#include <QMessageBox>
+#include <QDebug>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
-    QWidget *central = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(central);
+MainWindow::MainWindow(QWidget *parent)
+        : QMainWindow(parent), filterWidget(new ResumeFilterWidget(this)) {
 
-    QLabel *label = new QLabel("输入关键词：", this);
-    keywordInput = new QLineEdit(this);
-    filterButton = new QPushButton("筛选简历", this);
-    resultTable = new QTableWidget(this);
-
-    resultTable->setColumnCount(4);  // 不需要显示 ID 可不写
-    resultTable->setHorizontalHeaderLabels({"学历", "经历", "技能", "语言"});
-
-    layout->addWidget(label);
-    layout->addWidget(keywordInput);
-    layout->addWidget(filterButton);
-    layout->addWidget(resultTable);
-
-    setCentralWidget(central);
-
-    connect(filterButton, &QPushButton::clicked, this, &MainWindow::onFilterClicked);
+    loadDataFromDatabase();
+    filterWidget->setResumeManager(&manager);
+    setCentralWidget(filterWidget);
+    resize(1000, 600);
+    setWindowTitle("简历数据分析系统");
 }
 
-void MainWindow::onFilterClicked() {
-    QString keyword = keywordInput->text();  // 正确获取
-    std::vector<Resume> results = repository.filterResumes(keyword);
-    showResumes(results);
-}
+MainWindow::~MainWindow() {}
 
-void MainWindow::showResumes(const std::vector<Resume>& resumes) {
-    resultTable->clearContents();
-    resultTable->setRowCount(static_cast<int>(resumes.size()));
+void MainWindow::loadDataFromDatabase() {
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+    db.setDatabaseName("MySQL"); // DSN 名称
+    db.setUserName("root");
+    db.setPassword("20020904");
 
-    for (int i = 0; i < resumes.size(); ++i) {
-        const Resume& r = resumes[i];
-        resultTable->setItem(i, 0, new QTableWidgetItem(r.education));
-        resultTable->setItem(i, 1, new QTableWidgetItem(r.experience));
-        resultTable->setItem(i, 2, new QTableWidgetItem(r.skills));
-        resultTable->setItem(i, 3, new QTableWidgetItem(r.languages));
+    if (!db.open()) {
+        QMessageBox::critical(this, "数据库错误", "无法连接数据库: " + db.lastError().text());
+        return;
     }
 
-    resultTable->resizeColumnsToContents();  // 自动列宽
+    QSqlQuery query("SELECT resume_id, user_id, education, experience, skills, languages, created_at FROM resumes");
+    while (query.next()) {
+        Resume res(
+                query.value(0).toInt(),
+                query.value(1).toInt(),
+                query.value(2).toString(),
+                query.value(3).toString(),
+                query.value(4).toString(),
+                query.value(5).toString(),
+                query.value(6).toDateTime()
+        );
+        manager.addResume(res);
+    }
 }

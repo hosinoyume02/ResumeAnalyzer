@@ -3,21 +3,26 @@
 
 #include <QString>
 #include <QDateTime>
+#include <QStringList>
 
 class Resume {
 public:
-    int resume_id;
-    int user_id;
+    int resumeId;
+    int userId;
     QString education;
     QString experience;
     QString skills;
     QString languages;
-    QDateTime created_at;
+    QDateTime createdAt;
 
-    Resume(int rid, int uid, const QString& edu, const QString& exp, const QString& skl,
-           const QString& lang, const QDateTime& created)
-            : resume_id(rid), user_id(uid), education(edu), experience(exp),
-              skills(skl), languages(lang), created_at(created) {}
+    Resume();
+    Resume(int resumeId, int userId, const QString &education, const QString &experience,
+           const QString &skills, const QString &languages, const QDateTime &createdAt);
+
+    // 筛选匹配函数
+    bool matchesSkill(const QString &skill) const;
+    bool matchesLanguage(const QString &language) const;
+    bool matchesExperienceKeyword(const QString &keyword) const;
 };
 
 #endif // RESUME_H

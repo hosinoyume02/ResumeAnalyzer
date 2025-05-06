@@ -19,27 +19,19 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 # 添加源文件
 set(SOURCES
-        main.cpp
         Resume.cpp
-        resume_repository.cpp
+        ResumeManager.cpp
+        ResumeFilterWidget.cpp
         MainWindow.cpp
-        user_manager.cpp
-        resume_parser.cpp
-        test_data_generator.cpp
-        analyzer.cpp
-        charts_widget.cpp
+        main.cpp
 )
 
 # 添加头文件（仅 .h/.hpp）
 set(HEADERS
         Resume.h
-        resume_repository.h
+        ResumeManager.h
+        ResumeFilterWidget.h
         MainWindow.h
-        user_manager.h
-        resume_parser.h
-        test_data_generator.h
-        analyzer.h
-        charts_widget.h
 )
 
 # 创建可执行文件

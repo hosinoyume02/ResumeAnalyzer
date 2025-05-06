@@ -1,32 +1,22 @@
-#ifndef RESUME_ANALYZER_MAINWINDOW_H
-#define RESUME_ANALYZER_MAINWINDOW_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QTableWidget>
-#include "resume_repository.h"
-
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+#include "ResumeManager.h"
+#include "ResumeFilterWidget.h"
 
 class MainWindow : public QMainWindow {
 Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void onFilterClicked();  // 这个槽函数我们已经绑定过了
-
 private:
-    ResumeRepository repository;
-    QLineEdit *keywordInput;
-    QPushButton *filterButton;
-    QTableWidget *resultTable;
+    ResumeManager manager;
+    ResumeFilterWidget *filterWidget;
 
-    void showResumes(const std::vector<Resume>& resumes);
-
+    void loadDataFromDatabase();
 };
+
+#endif // MAINWINDOW_H

@@ -25,8 +25,24 @@ set(HEADERS
         MainWindow.h
         MainWindow.h
         MainWindow.cpp
+        user_manager.cpp
+        user_manager.h
+        resume_parser.h
+        resume_parser.cpp
+        test_data_generator.h
+        test_data_generator.cpp
+        analyzer.h
+        analyzer.cpp
+        charts_widget.h
+        charts_widget.cpp
 )
-
+target_link_libraries(ResumeAnalyzer PRIVATE
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
+        Qt6::Sql
+        Qt6::Charts
+)
 # Qt UI（暂时我们不使用 .ui 文件，可以忽略）
 add_executable(ResumeAnalyzer ${SOURCES} ${HEADERS})
 

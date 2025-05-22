@@ -48,8 +48,8 @@ void MainWindow::setupUI() {
     tabWidget = new QTabWidget(this);
     setCentralWidget(tabWidget);
 
-    // 公共选项卡：简历筛选（所有角色可见）
-    tabWidget->addTab(filterWidget, "简历筛选");
+    // 公共选项卡：简历筛选
+    //   tabWidget->addTab(filterWidget, "简历筛选");
 
     // 根据角色显示不同选项卡
     if (currentUser.role == "student") {
@@ -59,9 +59,11 @@ void MainWindow::setupUI() {
         tabWidget->addTab(recommendationWidget, "职位推荐");
     } else if (currentUser.role == "employer") {
         jobWidget = new JobWidget(currentUser.userId, db, this);
+        tabWidget->addTab(filterWidget, "简历筛选");
         tabWidget->addTab(jobWidget, "职位管理");
     } else if (currentUser.role == "admin") {
         adminWidget = new AdminWidget(db, this);
+        tabWidget->addTab(filterWidget, "简历筛选");
         tabWidget->addTab(adminWidget, "系统管理");
     }
 }
